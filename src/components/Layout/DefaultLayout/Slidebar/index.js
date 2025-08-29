@@ -1,5 +1,11 @@
+import style from './Slidebar.module.scss';
+
 function Slidebar() {
-    return <h2>Slidebar</h2>;
+    return (
+        <aside className={style.wrapper}>
+            <h2>Slidebar</h2>
+        </aside>
+    );
 }
 
 export default Slidebar;
