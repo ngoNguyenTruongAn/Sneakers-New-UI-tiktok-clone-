@@ -1,6 +1,9 @@
 .wrapper {
+    --search-border-radius: 92px;
+    --search-height: 50px;
+    --search-bottom-width: 51px;
     height: var(--default-layout-header-height); //60px
-    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.12);
     display: flex;
     justify-content: center;
     width: 100%;
@@ -8,4 +11,70 @@
 .inner {
     height: 100%;
     width: var(--default-layout-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    width: 134px;
+    height: 100%;
+}
+.search {
+    position: relative;
+    width: 361px;
+    height: var(--search-height);
+    display: flex;
+    background-color: #242424;
+    border-radius: var(--search-border-radius);
+    padding-left: 16px;
+    border: 1.5px transparent solid;
+    input {
+        flex: 1;
+        color: var(--text-color);
+        font-size: 1.6rem;
+        caret-color: var(--primary);
+        height: 100%;
+        background-color: transparent;
+    }
+    input:not(:placeholder-shown) ~ .search-btn {
+          color: var(--primary);
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: 11px;
+        right: var(--search-bottom-width);
+        height: calc(var(--search-height) - 22px);
+        width: 1px;
+        background-color: #3b3b3b;
+    }
+    &:focus-within {
+        border-color: var(--primary);
+    }
+}
+.clear,
+.loading {
+    position: absolute;
+    right: calc(var(--search-bottom-width) + 16px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1.6rem;
+    background-color: transparent;
+}
+.search-btn {
+    width: 52px;
+    height: 100%;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    background-color: #242424;
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    &:hover {
+        cursor: pointer;
+        background-color: #3b3b3b;
+    }
+    &:active {
+        background-color: #4b4b4b;
+    }
 }
