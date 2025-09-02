@@ -8,6 +8,7 @@
     // Default Layout
     --default-layout-header-height: 80px;
     --default-layout-width: 1150px;
+    --default-layout-horizontal-spacer: 24px;
 }
 * {
     margin: 0;
@@ -35,3 +36,4 @@ a[href] {
     color: var(--text-color);
     text-decoration: none;
 }
+

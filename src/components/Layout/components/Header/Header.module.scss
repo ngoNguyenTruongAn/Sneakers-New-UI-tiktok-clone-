@@ -11,6 +11,7 @@
 .inner {
     height: 100%;
     width: var(--default-layout-width);
+    padding: 0 var(--default-layout-horizontal-spacer);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -91,11 +92,31 @@
         background-color: #4b4b4b;
     }
 }
+// Action
+.actions {
+    display: flex;
+    align-items: center;
+}
+.action-btn {
+    background-color: transparent;
+    font-size: 2.2rem;
+    color: var(--text-color);
+    padding: 4px 12px;
+    cursor: pointer;
+}
 .more-btn {
     font-size: 2rem;
     color: var(--text-color);
     background-color: transparent;
     margin-left: 24px;
     padding: 4px;
+    cursor: pointer;
 }
-
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 12px;
+    cursor: pointer;
+}
