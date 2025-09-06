@@ -1,10 +1,6 @@
 import styles from './Header.module.scss';
-import React, { Children, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCircleXmark,
-    faSpinner,
-    faMagnifyingGlass,
     faEllipsisVertical,
     faLanguage,
     faCloudArrowUp,
@@ -13,15 +9,15 @@ import {
     faCoins,
     faGear,
     faArrowRightFromBracket,
+    faPaperPlane,
 } from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import { faCircleQuestion, faKeyboard } from '@fortawesome/free-regular-svg-icons';
-import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import ShortTippy from '@tippyjs/react';
+import Image from '~/components/Image';
+import Search from '../Search';
 const Menu_Items = [
     {
         icon: <FontAwesomeIcon icon={faLanguage} />,
@@ -84,12 +80,6 @@ const Menu_Items = [
 ];
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
     // handle Logic
 
     const handleMenuChange = (MenuItem) => {
@@ -132,33 +122,7 @@ function Header() {
                 <div className={styles.logo}>
                     <img className={styles.logo} src="/img/logo.png" alt="" />
                 </div>
-                <Tippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div className={styles['search-result']} tabIndex={-1} {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={styles['search-title']}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={styles.search}>
-                        <input placeholder="Search account and video" spellCheck={false} />
-                        <button className={styles['clear']}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={styles['loading']} icon={faSpinner} />
-
-                        <button className={styles['search-btn']}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </Tippy>
+                {<Search />}
 
                 <div className={styles.actions}>
                     {currentUsers ? (
@@ -166,6 +130,11 @@ function Header() {
                             <ShortTippy content="Upload video" placement="bottom">
                                 <button className={styles['action-btn']}>
                                     <FontAwesomeIcon icon={faCloudArrowUp} />
+                                </button>
+                            </ShortTippy>
+                            <ShortTippy content="Share video" placement="bottom">
+                                <button className={styles['action-btn']}>
+                                    <FontAwesomeIcon icon={faPaperPlane} />
                                 </button>
                             </ShortTippy>
                             <ShortTippy content="Message">
@@ -182,7 +151,7 @@ function Header() {
                     )}
                     <Menu item={currentUsers ? userMenu : Menu_Items} onChange={handleMenuChange}>
                         {currentUsers ? (
-                            <img
+                            <Image
                                 src="https://i.pinimg.com/280x280_RS/6e/77/28/6e772861bcd00887e30f0a7907fc1885.jpg"
                                 className={styles['user-avatar']}
                                 alt="StockX"
